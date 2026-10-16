@@ -1,0 +1,15 @@
+export const nativeVoice={
+ copyRevision:2,
+ steps:[
+ {headline:'People hold everything together.',support:'Agents switch between tools, chase teams and manually move requests forward.',notes:''},
+ {headline:'One connected service journey.',support:'Using unified data + AI to improve efficiency and customer satisfaction',notes:''}
+ ],
+ labels:{routingEngine:'Routing engine',supervisor:'Supervisor',customer360:'Customer 360',sharedFoundation:'Customer context · Knowledge · Business rules',connectedWork:'Teams & systems',contactCentre:'Unified contact centre',platformLayer:'Platform',dataLayer:'Data',sharedInformation:'Shared information · Business rules · Customer data',tools:['CRM','Processes','Knowledge','Notes'],teams:['Sales','Operations','Finance'],ai:'AI agent',human:'Human agent',handoff:'Human when needed',integrations:'Integrations',external:['Systems','Data','Teams'],manual:'Manual triage',beforeCaption:'Disconnected channels · Scattered tools · Manual handoffs',afterCaption:'Shared context · Connected work · Clear ownership',customer:'Customer',team:'Human agent',departments:'Other departments',systems:['System A','System B','System C'],record:'Request',platform:'Agentforce Contact Center',channels:['Chat','SMS','Voice','Email'],case:'Case',agent:'Agentforce',rep:'Representative',foundation:['Customer context','Knowledge','Rules & actions'],friction:['Customers chasing','Cases bouncing','Notes missing'],outcomes:['Less repetition','Clear ownership','Connected progress'],conversation:'Conversation',workflow:'Department workflow',update:'Case update'},
+ about:'This is a conceptual solution illustration, not a literal Salesforce data model. The before state represents a possible fragmented environment, not every customer. External systems of record and departmental records can remain: context and workflows are linked, not automatically collapsed into one case. Native telephony and Agentforce AI are distinct capabilities; adding voice does not activate or configure AI. Shared context, case association, actions and handoffs depend on configuration, permissions and integrations. Grounding provides relevant information but does not guarantee correct behaviour. Native voice alone does not fix departmental processes. Salesforce has existing telephony capabilities, and partner telephony is not excluded.'
+};
+export type NativeVoiceConfig=typeof nativeVoice;
+
+export function resolveNativeVoice(config?:NativeVoiceConfig):NativeVoiceConfig {
+ if(!config||config.steps.length!==2)return {...nativeVoice,about:config?.about??nativeVoice.about};
+ return {...nativeVoice,...config,copyRevision:2,steps:config.copyRevision===2?config.steps:config.steps.map((step,i)=>config.copyRevision===1?({...step,...(i===1?{support:nativeVoice.steps[1].support}:{})}):({...step,headline:nativeVoice.steps[i].headline,support:nativeVoice.steps[i].support})),labels:{...nativeVoice.labels,...config.labels,channels:config.labels.channels.length===4?config.labels.channels:nativeVoice.labels.channels}};
+}

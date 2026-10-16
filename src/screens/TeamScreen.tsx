@@ -1,0 +1,5 @@
+import type {CSSProperties} from 'react';
+import type {PresentationConfig} from '../types/presentation';
+import {presentation} from '../data/presentation';
+import './TeamScreen.css';
+export function TeamScreen({config}:{config:PresentationConfig}){const team=config.team??presentation.team!;return <div className={`team-screen team-screen--${team.members.length}`}><h1 id="screen-title">{team.title}</h1><div className="team-screen__people" style={{'--team-count':team.members.length} as CSSProperties}>{team.members.map(member=><article className="team-screen__person" key={member.id}><div className="team-screen__portrait">{member.image.src?<img src={member.image.src} alt={member.image.alt} style={{objectFit:member.image.fit}}/>:<span aria-hidden="true">{member.name.split(/\s+/).map(n=>n[0]).slice(0,2).join('')}</span>}</div><h2>{member.name}</h2>{member.role&&<p className="team-screen__role">{member.role}</p>}{member.specialty&&<p className="team-screen__specialty">{member.specialty}</p>}</article>)}</div></div>}

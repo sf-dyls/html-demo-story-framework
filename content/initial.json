@@ -1,0 +1,513 @@
+{
+  "schemaVersion": 1,
+  "team": {
+    "title": "Meet your team",
+    "members": [
+      {
+        "id": "dylan",
+        "name": "Dylan Pham",
+        "role": "Specialist Solution Engineer",
+        "specialty": "Service Cloud",
+        "image": {
+          "alt": "Dylan Pham",
+          "recommendedWidth": 800,
+          "recommendedHeight": 800,
+          "fit": "cover",
+          "src": "/team-media/dd287f39caac7624fd1b.png"
+        }
+      }
+    ]
+  },
+  "customer": {
+    "name": "Vera Living",
+    "logo": {
+      "alt": "Vera Living logo",
+      "recommendedWidth": 600,
+      "recommendedHeight": 240,
+      "fit": "contain",
+      "src": "/team-media/d1ae328ccba0e95c10d8.png"
+    },
+    "primaryColor": "#597bb8",
+    "secondaryColor": "#b6a4d8"
+  },
+  "presentation": {
+    "title": "Connected care. Effortless service.",
+    "subtitle": "A service experience built around people",
+    "heroImage": {
+      "src": "/team-media/41a6150e060f711c065b.png",
+      "alt": "A welcoming residential lobby with seating and natural light",
+      "recommendedWidth": 1920,
+      "recommendedHeight": 1080,
+      "fit": "cover"
+    }
+  },
+  "challenges": [
+    {
+      "id": "disconnected",
+      "title": "Fragmented systems, heavy admin",
+      "description": "TSS can\u2019t keep pace with demand \u2014 shortcuts become routine and tenant satisfaction suffers.",
+      "benefitId": "connected"
+    },
+    {
+      "id": "manual",
+      "title": "Breaching values, NDIS compliance risk",
+      "description": "Missed steps and incomplete records put tenant safety, compliance and trust at risk.",
+      "benefitId": "effortless"
+    },
+    {
+      "id": "visibility",
+      "title": "Limited service visibility",
+      "description": "Managers struggle to spot critical issues and know when agents need support.",
+      "benefitId": "intelligent"
+    }
+  ],
+  "benefits": [
+    {
+      "id": "connected",
+      "title": "Unified service experience",
+      "shortDescription": "\u2191 Customer Satisfaction"
+    },
+    {
+      "id": "effortless",
+      "title": "Guided processes and stronger safeguards",
+      "shortDescription": "\u2193 Average Handle Time"
+    },
+    {
+      "id": "intelligent",
+      "title": "Real-time visibility and control",
+      "shortDescription": "\u2193 SLA Breach"
+    }
+  ],
+  "personas": [
+    {
+      "id": "lauren",
+      "name": "Lauren",
+      "role": "Care Worker",
+      "quote": "I just want this sorted.",
+      "image": {
+        "src": "/team-media/06d8cf127ec64de41aca.png",
+        "alt": "Portrait of Lauren",
+        "recommendedWidth": 1600,
+        "recommendedHeight": 1200,
+        "fit": "cover"
+      },
+      "chapterTitle": "Lauren\u2019s Journey",
+      "overviewTouchpoints": [
+        {
+          "id": "lauren-overview-1",
+          "title": "Reach out"
+        },
+        {
+          "id": "lauren-overview-2",
+          "title": "Get help"
+        },
+        {
+          "id": "lauren-overview-3",
+          "title": "Stay informed"
+        }
+      ],
+      "recapTouchpoints": [
+        {
+          "id": "lauren-recap-1",
+          "title": "Lauren reports a leak"
+        },
+        {
+          "id": "lauren-recap-2",
+          "title": "AI confirms her property"
+        },
+        {
+          "id": "lauren-recap-3",
+          "title": "Safety guidance provided"
+        },
+        {
+          "id": "lauren-recap-4",
+          "title": "Urgent request logged"
+        },
+        {
+          "id": "lauren-recap-5",
+          "title": "Incident escalated to a person"
+        }
+      ]
+    },
+    {
+      "id": "jane",
+      "name": "Jane",
+      "role": "Tenant Support Specialist",
+      "quote": "Give me the context to help.",
+      "image": {
+        "src": "/team-media/9e0d4067b8709d3fe853.png",
+        "alt": "Portrait of Jane",
+        "recommendedWidth": 1600,
+        "recommendedHeight": 1200,
+        "fit": "cover"
+      },
+      "chapterTitle": "Jane\u2019s Journey",
+      "overviewTouchpoints": [
+        {
+          "id": "jane-overview-1",
+          "title": "Understand"
+        },
+        {
+          "id": "jane-overview-2",
+          "title": "Resolve"
+        },
+        {
+          "id": "jane-overview-3",
+          "title": "Follow through"
+        }
+      ],
+      "recapTouchpoints": [
+        {
+          "id": "jane-recap-1",
+          "title": "See what needs attention"
+        },
+        {
+          "id": "jane-recap-2",
+          "title": "Receive the right work automatically"
+        },
+        {
+          "id": "jane-recap-3",
+          "title": "Answer with full customer context"
+        },
+        {
+          "id": "jane-recap-4",
+          "title": "Follow guided incident reporting"
+        },
+        {
+          "id": "jane-recap-5",
+          "title": "Alert the supervisor automatically"
+        },
+        {
+          "id": "53acb742-cd47-4b07-a18c-aee9e27bbfd4",
+          "title": "Wrap-up with AI-generated notes"
+        }
+      ]
+    },
+    {
+      "id": "john",
+      "name": "John",
+      "role": "Service Supervisor",
+      "quote": "Help me see where we can improve.",
+      "image": {
+        "src": "/team-media/71dfe872451361e9da10.png",
+        "alt": "Portrait of John",
+        "recommendedWidth": 1600,
+        "recommendedHeight": 1200,
+        "fit": "cover"
+      },
+      "chapterTitle": "John\u2019s Journey",
+      "overviewTouchpoints": [
+        {
+          "id": "john-overview-1",
+          "title": "See demand"
+        },
+        {
+          "id": "john-overview-2",
+          "title": "Support teams"
+        },
+        {
+          "id": "john-overview-3",
+          "title": "Improve service"
+        }
+      ],
+      "recapTouchpoints": [
+        {
+          "id": "john-recap-1",
+          "title": "See team capacity and performance"
+        },
+        {
+          "id": "john-recap-2",
+          "title": "Monitor live conversations"
+        },
+        {
+          "id": "john-recap-3",
+          "title": "Catch up with AI summaries"
+        },
+        {
+          "id": "john-recap-4",
+          "title": "Support agents with whisper coaching"
+        },
+        {
+          "id": "john-recap-5",
+          "title": "Review service dashboards and analytics"
+        }
+      ]
+    }
+  ],
+  "valuePoints": [
+    {
+      "id": "resolution",
+      "title": "Representative performance increase",
+      "metric": "+90%",
+      "description": "",
+      "logo": {
+        "alt": "Customer logo",
+        "recommendedWidth": 600,
+        "recommendedHeight": 300,
+        "fit": "contain",
+        "src": "/team-media/3fb3f597ed2a88d2adcf.png"
+      }
+    },
+    {
+      "id": "effort",
+      "title": "Self-service resolution",
+      "metric": "+24%",
+      "logo": {
+        "alt": "Customer logo",
+        "recommendedWidth": 600,
+        "recommendedHeight": 300,
+        "fit": "contain",
+        "src": "/team-media/638125a84a7b3e7e6106.png"
+      }
+    },
+    {
+      "id": "productivity",
+      "title": "First contact resolution with AI",
+      "metric": "20%",
+      "logo": {
+        "alt": "Customer logo",
+        "recommendedWidth": 600,
+        "recommendedHeight": 300,
+        "fit": "contain",
+        "src": "/team-media/ab6d00541b7aa7f43f90.png"
+      }
+    },
+    {
+      "id": "visibility",
+      "title": "Average handle time",
+      "metric": "-25%",
+      "logo": {
+        "alt": "Customer logo",
+        "recommendedWidth": 600,
+        "recommendedHeight": 300,
+        "fit": "contain",
+        "src": "/team-media/8b42ce7dc2f3eb65bc11.png"
+      }
+    },
+    {
+      "id": "consistency",
+      "title": "Decrease in hold times",
+      "metric": "98%",
+      "logo": {
+        "alt": "Customer logo",
+        "recommendedWidth": 600,
+        "recommendedHeight": 300,
+        "fit": "contain",
+        "src": "/team-media/4a097c9150f6a39ffd31.png"
+      }
+    }
+  ],
+  "valueAudience": [
+    {
+      "personaId": "lauren",
+      "label": "Customers"
+    },
+    {
+      "personaId": "jane",
+      "label": "Service Reps"
+    },
+    {
+      "personaId": "john",
+      "label": "Supervisors"
+    }
+  ],
+  "closing": {
+    "title": "Thank you!",
+    "vendorName": "Salesforce",
+    "vendorLogo": {
+      "alt": "Salesforce logo",
+      "recommendedWidth": 600,
+      "recommendedHeight": 420,
+      "fit": "contain",
+      "src": "/team-media/5b1ba3d85da23ad0b0b9.webp"
+    }
+  },
+  "labels": {
+    "discovery": "What we heard",
+    "focus": "What we\u2019ll focus on today",
+    "journeyHub": "Today\u2019s Demo Journey",
+    "customerValue": "What does this translate to?",
+    "beginDemo": "Begin Demo",
+    "journeyComplete": "Journey Complete",
+    "continue": "Continue"
+  },
+  "nativeVoice": {
+    "copyRevision": 2,
+    "steps": [
+      {
+        "headline": "People hold everything together.",
+        "support": "Agents switch between tools, chase teams and manually move requests forward.",
+        "notes": ""
+      },
+      {
+        "headline": "One connected service journey.",
+        "support": "Using unified data + AI to improve efficiency and customer satisfaction",
+        "notes": ""
+      }
+    ],
+    "labels": {
+      "customer360": "Customer 360",
+      "sharedFoundation": "Customer context \u00b7 Knowledge \u00b7 Business rules",
+      "connectedWork": "Teams & systems",
+      "contactCentre": "Unified contact centre",
+      "platformLayer": "Platform",
+      "dataLayer": "Data",
+      "sharedInformation": "Shared information \u00b7 Business rules \u00b7 Customer data",
+      "tools": [
+        "CRM",
+        "Processes",
+        "Knowledge",
+        "Notes"
+      ],
+      "teams": [
+        "Sales",
+        "Operations",
+        "Finance"
+      ],
+      "ai": "AI agent",
+      "human": "Human agent",
+      "handoff": "Human when needed",
+      "integrations": "Integrations",
+      "external": [
+        "Systems",
+        "Data",
+        "Teams"
+      ],
+      "manual": "Manual triage",
+      "beforeCaption": "Disconnected channels \u00b7 Scattered tools \u00b7 Manual handoffs",
+      "afterCaption": "Shared context \u00b7 Connected work \u00b7 Clear ownership",
+      "customer": "Customer",
+      "team": "Human agent",
+      "departments": "Other departments",
+      "systems": [
+        "System A",
+        "System B",
+        "System C"
+      ],
+      "record": "Request",
+      "platform": "Agentforce Contact Center",
+      "channels": [
+        "Chat",
+        "SMS",
+        "Voice",
+        "Email"
+      ],
+      "case": "Case",
+      "agent": "Agentforce",
+      "rep": "Representative",
+      "foundation": [
+        "Customer context",
+        "Knowledge",
+        "Rules & actions"
+      ],
+      "friction": [
+        "Customers chasing",
+        "Cases bouncing",
+        "Notes missing"
+      ],
+      "outcomes": [
+        "Less repetition",
+        "Clear ownership",
+        "Connected progress"
+      ],
+      "conversation": "Conversation",
+      "workflow": "Department workflow",
+      "update": "Case update"
+    },
+    "about": "This is a conceptual solution illustration, not a literal Salesforce data model. The before state represents a possible fragmented environment, not every customer. External systems of record and departmental records can remain: context and workflows are linked, not automatically collapsed into one case. Native telephony and Agentforce AI are distinct capabilities; adding voice does not activate or configure AI. Shared context, case association, actions and handoffs depend on configuration, permissions and integrations. Grounding provides relevant information but does not guarantee correct behaviour. Native voice alone does not fix departmental processes. Salesforce has existing telephony capabilities, and partner telephony is not excluded."
+  },
+  "customerStory": {
+    "name": "Wythenshawe Community Housing Group",
+    "context": "UK social housing \u00b7 WCHG",
+    "title": "Connected service. Real community impact.",
+    "metrics": [
+      {
+        "value": "14%",
+        "label": "fewer calls",
+        "detail": "Over a six-month period"
+      },
+      {
+        "value": "1 view",
+        "label": "replacing 3\u20134 screens",
+        "detail": "Customer and property context together"
+      },
+      {
+        "value": "37%",
+        "label": "better colleague satisfaction",
+        "detail": "With equipment and systems"
+      }
+    ],
+    "relevance": "For Vera Living: less admin, guided complaint handling and clearer oversight of tenant needs.",
+    "sourceUrl": "https://gpscasestudies.salesforce.com/articles/wchg"
+  },
+  "slideOrder": [
+    "title",
+    "team",
+    "challenges",
+    "nativeVoice",
+    "benefits",
+    "hub",
+    "intro:lauren",
+    "recap:lauren",
+    "intro:jane",
+    "recap:jane",
+    "intro:john",
+    "recap:john",
+    "takeaways",
+    "story",
+    "value",
+    "actions",
+    "closing"
+  ],
+  "keyTakeaways": {
+    "title": "Key takeaways",
+    "benefits": [
+      {
+        "id": "connected",
+        "title": "Unified service experience",
+        "shortDescription": "\u2191 Customer Satisfaction"
+      },
+      {
+        "id": "effortless",
+        "title": "Guided processes and stronger safeguards",
+        "shortDescription": "\u2193 Average Handle Time"
+      },
+      {
+        "id": "intelligent",
+        "title": "Real-time visibility and control",
+        "shortDescription": "\u2193 SLA Breach"
+      }
+    ]
+  },
+  "contactCenter": {
+    "title": "Agentforce Contact Center",
+    "subtitle": "Agentic self-service, assisted service and supervisor insights",
+    "customer": "Customer",
+    "channels": "Service channels",
+    "telephony": "Telephony",
+    "chat": "Live chat",
+    "messaging": "Messaging",
+    "messagingDetail": "SMS, Facebook, WhatsApp",
+    "email": "Email",
+    "routing": "Omni-channel",
+    "configuration": "Configuration",
+    "omniFlow": "Omni Flow",
+    "routingDetail": "Routing recommendations & IVR logic",
+    "engine": "Routing engine",
+    "analytics": "Logging & analytics",
+    "selfService": "Conversational self-service",
+    "helpAgent": "Help Agent",
+    "console": "Service console",
+    "assistant": "Service Assistant",
+    "supervisor": "Supervisor & WEM",
+    "platform": "Salesforce + Data Cloud",
+    "customer360": "Customer 360",
+    "actions": "AI actions",
+    "apex": "Apex",
+    "flows": "Flows, prompts",
+    "note": "Help Agent is often known as Agentforce Voice on the voice channel, and Agentforce Service Agent on messaging and email."
+  },
+  "hiddenScreens": [
+    "contactCenter"
+  ]
+}

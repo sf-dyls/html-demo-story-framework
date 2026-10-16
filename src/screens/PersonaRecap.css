@@ -1,0 +1,10 @@
+.persona-recap{width:100%;max-width:1680px;margin:auto}
+.persona-recap h1{font-size:clamp(38px,3.5vw,64px);margin:0;line-height:1.15}
+.persona-recap__completion{font-size:18px;line-height:1.5;min-height:1.5em;margin:12px 0 0;color:#59708d}
+.persona-recap .journey-map{padding-block:0}
+.persona-recap .journey-map__track{min-height:21rem;padding-block:.5rem}
+.persona-recap .journey-stepper__controls{margin-block:12px}
+.persona-recap__benefits{border-top:1px solid #c9d3e080;margin-top:24px}
+.recap-shell .stage{padding-block:20px;min-height:0}
+.recap-shell .presenter-controls p:empty{display:none}
+@media(max-height:800px) and (min-width:900px){.recap-shell{padding-block:16px}.recap-shell .stage{padding-block:12px}.persona-recap h1{font-size:40px}.persona-recap__completion{margin-top:4px}.persona-recap .journey-map__track{min-height:18rem;padding-block:0}.persona-recap__benefits{margin-top:12px}.persona-recap .demo-benefits{padding-block:16px}.persona-recap .journey-stepper__controls{margin-block:8px}.recap-shell .presenter-controls{padding-top:10px}.recap-shell .presenter-controls p{margin-top:8px}}

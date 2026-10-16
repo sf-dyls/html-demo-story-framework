@@ -1,0 +1,13 @@
+.persona-intro{width:100%;max-width:1680px;margin:auto;display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:clamp(40px,6vw,112px);align-items:center}
+.persona-intro__copy{padding-block:24px}
+.persona-intro .persona-intro__role{font-size:clamp(16px,1.4vw,24px);color:#5c6e88;margin:0 0 20px;letter-spacing:.025em}
+.persona-intro h1{font-size:clamp(56px,6.2vw,112px);font-weight:600;line-height:1.02;letter-spacing:-.05em;margin:0 0 32px;overflow-wrap:anywhere}
+.persona-intro__quote{font-size:clamp(22px,2vw,34px);line-height:1.4;color:#51627b;margin:0;max-width:22ch;text-wrap:balance}
+.persona-intro .persona-intro__begin{margin-top:48px;border-radius:999px;padding:14px 26px;font-size:18px;line-height:1.4}
+.persona-intro__image{padding:14px;border-radius:32px;background:#edf1f6;box-shadow:16px 16px 36px #bbc5d57a,-14px -14px 32px #ffffffdf;border:1px solid #ffffff80}
+.persona-intro__image img,.persona-intro__placeholder{display:block;width:100%;aspect-ratio:4/3;max-height:62vh;border-radius:22px;object-position:center}
+.persona-intro__placeholder{display:flex;flex-direction:column;justify-content:center;align-items:center;background:#e3eaf3;color:#5c6e88}
+.persona-intro__placeholder>span{font-size:72px}.persona-intro__placeholder p{font-size:16px;margin:24px 0 0}
+.persona-shell .stage{padding-block:32px;min-height:0}
+@media(max-height:800px) and (min-width:801px){.persona-shell{padding-block:20px}.persona-shell .stage{padding-block:24px}.persona-intro__image img{max-height:54vh}.persona-intro .persona-intro__begin{margin-top:32px}.persona-intro h1{margin-bottom:24px}}
+@media(max-width:800px){.persona-intro{grid-template-columns:1fr;gap:24px}.persona-intro__image{grid-row:1;padding:10px;border-radius:24px}.persona-intro__image img,.persona-intro__placeholder{max-height:none;border-radius:16px}.persona-intro__copy{padding:0}.persona-intro h1{font-size:56px;margin-bottom:20px}.persona-intro .persona-intro__role{margin-bottom:12px}.persona-intro .persona-intro__begin{margin-top:24px}.persona-intro__quote{max-width:30ch}.persona-shell .stage{padding-block:24px}}

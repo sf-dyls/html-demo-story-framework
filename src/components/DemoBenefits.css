@@ -1,0 +1,33 @@
+.demo-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  padding-block: clamp(1.5rem, 2.5vw, 2.5rem);
+  color: #35445c;
+}
+.demo-benefits__pillar {
+  min-width: 0;
+  padding-inline: clamp(.625rem, 2.5vw, 3rem);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.demo-benefits__pillar + .demo-benefits__pillar {
+  border-inline-start: 1px solid #c3cddb;
+}
+.demo-benefits__title {
+  margin: 0;
+  color: inherit;
+  font-size: clamp(1rem, 1.45vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: .025em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.demo-benefits__description {
+  margin: .75rem 0 0;
+  color: #54647c;
+  font-size: clamp(1rem, 1.1vw, 1.25rem);
+  line-height: 1.5;
+  text-wrap: balance;
+}

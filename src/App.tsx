@@ -1,0 +1,41 @@
+import {ContactCenterScreen} from './screens/ContactCenter';
+import {NativeVoiceScreen} from './screens/NativeVoice';
+import {CustomerStoryScreen} from './screens/CustomerStory';
+import {AnimatedBackground} from './components/AnimatedBackground';
+import {useFollowups,NotesDialog,ActionsScreen} from './components/Followups';
+import {FooterBranding} from './components/FooterBranding';
+import {TeamScreen} from './screens/TeamScreen';
+import {useCallback,useEffect,useState} from 'react';
+import {AnimatePresence,motion,useReducedMotion} from 'framer-motion';
+import {ContentContext,useContent,api} from './cms/content';
+import {Editor} from './cms/Editor';
+import type {PresentationConfig} from './types/presentation';
+import {PresentationProvider,usePresentation} from './state/PresentationContext';
+import {usePresentationKeyboard} from './hooks/usePresentationKeyboard';
+import {NavigationOverlay} from './components/NavigationOverlay';
+import {BenefitsReview} from './screens/BenefitsReview';
+import {TitleScreen} from './screens/TitleScreen';
+import {DiscoveryScreen} from './screens/DiscoveryScreen';
+import {JourneyMapPlayground} from './dev/JourneyMapPlayground';
+import {JourneyHub} from './screens/JourneyHub';
+import {PersonaIntro} from './screens/PersonaIntro';
+import {PersonaRecap} from './screens/PersonaRecap';
+import {hubProgress} from './utils/hubProgress';
+import {CustomerValue} from './screens/CustomerValue';
+import {ClosingScreen} from './screens/ClosingScreen';
+function Presentation(){
+ const followups=useFollowups();const [notesOpen,setNotesOpen]=useState(false);const openNotes=useCallback(()=>setNotesOpen(true),[]);
+ const config=useContent();const {state,dispatch}=usePresentation();const reduced=useReducedMotion();const [fullscreen,setFullscreen]=useState(false);const [notice,setNotice]=useState('');
+ const {allComplete}=hubProgress(config.personas.map(p=>p.id),state.completedPersonaIds);
+ const persona=config.personas.find(p=>p.id===state.currentPersonaId);
+ const next=useCallback(()=>dispatch({type:'next'}),[dispatch]);const previous=useCallback(()=>dispatch({type:'previous'}),[dispatch]);const hub=useCallback(()=>{if(!config.hiddenScreens?.includes('hub'))dispatch({type:'go',screen:'journeyHub'});},[dispatch,config.hiddenScreens]);const toggleOverlay=useCallback(()=>dispatch({type:'toggleOverlay'}),[dispatch]);
+ const toggleFullscreen=useCallback(async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();setNotice('');}catch{setNotice('Fullscreen is unavailable in this browser.');}},[]);
+ useEffect(()=>{const update=()=>setFullscreen(!!document.fullscreenElement);document.addEventListener('fullscreenchange',update);return ()=>document.removeEventListener('fullscreenchange',update);},[]);
+ usePresentationKeyboard({next,previous,hub,toggleOverlay,fullscreen:toggleFullscreen,overlayOpen:state.navigationOverlayOpen,notes:openNotes,notesOpen});
+ const heading=state.currentScreen==='title'?config.presentation.title:state.currentScreen==='takeaways'?(config.keyTakeaways?.title??'Key takeaways'):state.currentScreen==='discovery'?(state.discoveryState==='challenges'?config.labels.discovery:config.labels.focus):state.currentScreen==='journeyHub'?config.labels.journeyHub:state.currentScreen==='personaIntro'?persona?.name:state.currentScreen==='personaRecap'?persona?.chapterTitle:state.currentScreen==='customerValue'?config.labels.customerValue:config.closing.title;
+ return <main className={`presentation-shell ${state.currentScreen==='nativeVoice'?'opening-shell voice-shell':state.currentScreen==='customerStory'?'opening-shell story-shell':state.currentScreen==='actions'?'opening-shell actions-shell':state.currentScreen==='closing'?'opening-shell closing-shell':state.currentScreen==='customerValue'?'opening-shell value-shell':state.currentScreen==='personaRecap'?'opening-shell recap-shell':state.currentScreen==='personaIntro'?'opening-shell persona-shell':state.currentScreen==='journeyHub'?'opening-shell hub-shell':['team','title','takeaways','discovery','contactCenter'].includes(state.currentScreen)?'opening-shell':''}`}><AnimatedBackground/><header className="toolbar"><div>{!config.hiddenScreens?.includes('hub')&&<button onClick={hub}>Journey hub · H</button>}<button onClick={openNotes}>Notes · N</button><button onClick={toggleFullscreen}>{fullscreen?'Exit fullscreen':'Fullscreen'} · F</button><button onClick={toggleOverlay}>Navigation · Esc</button></div></header>
+ <AnimatePresence mode="wait" initial={false}><motion.section className="stage" key={`${state.currentScreen}-${state.currentPersonaId}`} initial={{opacity:0,y:reduced?0:8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:reduced?0:-8}} transition={{duration:reduced?0:0.25}} aria-labelledby="screen-title">{state.currentScreen==='contactCenter'?<ContactCenterScreen config={config}/>:state.currentScreen==='title'?<TitleScreen config={config}/>:state.currentScreen==='team'?<TeamScreen config={config}/>:state.currentScreen==='takeaways'?<DiscoveryScreen config={config} showBenefits takeaways/>:state.currentScreen==='discovery'?<DiscoveryScreen config={config} showBenefits={state.discoveryState==='benefits'}/>:state.currentScreen==='nativeVoice'?<NativeVoiceScreen config={config.nativeVoice} step={state.voiceIndex??0} onNext={next} onPrevious={previous} onJump={index=>dispatch({type:'voiceJump',index})}/>:state.currentScreen==='journeyHub'?<JourneyHub config={{...config,personas:config.personas.filter(p=>!config.hiddenScreens?.includes(`intro:${p.id}`)||!config.hiddenScreens?.includes(`recap:${p.id}`))}} completedPersonaIds={state.completedPersonaIds} onContinue={next} onSelectPersona={id=>dispatch({type:'go',screen:'personaIntro',personaId:id})}/>:state.currentScreen==='personaIntro'&&persona?<PersonaIntro key={persona.id} persona={persona} beginLabel={config.labels.beginDemo} onBegin={next}/>:state.currentScreen==='personaRecap'&&persona?<PersonaRecap key={persona.id} persona={persona} benefits={config.benefits} activeIndex={state.recapIndex} complete={state.recapComplete} completionLabel={config.labels.journeyComplete} continueLabel={config.personas[config.personas.findIndex(p=>p.id===persona.id)+1]?`Continue to ${config.personas[config.personas.findIndex(p=>p.id===persona.id)+1].name} →`:'Continue to Customer Value →'} onNext={next} onPrevious={previous} onJump={index=>dispatch({type:'recapJump',index})} canGoBack={state.history.length>0}/>:state.currentScreen==='customerValue'?<CustomerValue config={config} activeIndex={state.valueIndex}/>:state.currentScreen==='customerStory'?<CustomerStoryScreen config={config}/>:state.currentScreen==='actions'?<ActionsScreen followups={followups} onAdd={openNotes}/>:state.currentScreen==='closing'?<ClosingScreen config={config}/>:<><span className="eyebrow">{state.currentScreen==='personaIntro'||state.currentScreen==='personaRecap'?persona?.role:config.customer.name}</span><h1 id="screen-title">{heading}</h1></>}
+ </motion.section></AnimatePresence>
+ <footer className="presenter-controls presenter-controls--minimal"><small><a href="/cms">Edit content</a></small><p role="status">{notice}</p><FooterBranding config={config}/></footer><NavigationOverlay/><NotesDialog open={notesOpen} onClose={()=>setNotesOpen(false)} onSave={followups.add}/></main>;
+}
+export default function App(){const [config,setConfig]=useState<PresentationConfig|null>(null);const [error,setError]=useState('');useEffect(()=>{if(window.location.pathname.replace(/\/$/,'')==='/cms')return;api('/api/content').then(r=>setConfig(r.config)).catch(e=>setError(e.message));},[]);if(window.location.pathname.replace(/\/$/,'')==='/cms')return <Editor/>;if(error)return <main className="cms-loading"><h1>Presentation unavailable</h1><p>{error}</p><button onClick={()=>location.reload()}>Retry</button></main>;if(!config)return <main className="cms-loading">Loading presentation…</main>;if(new URLSearchParams(window.location.search).get('review')==='journey-map')return <JourneyMapPlayground/>;if(new URLSearchParams(window.location.search).get('review')==='benefits')return <BenefitsReview/>;return <ContentContext.Provider value={config}><PresentationProvider><Presentation/></PresentationProvider></ContentContext.Provider>}
