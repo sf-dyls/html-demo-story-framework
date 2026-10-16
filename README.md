@@ -1,96 +1,231 @@
 # Demo Story Framework
 
-An editable, presenter-led React presentation with a CMS, persona journeys, animated before/after diagrams, customer value cards and follow-up notes.
+A reusable, interactive presentation framework for customer demonstrations. It helps presenters connect customer challenges to a solution story, walk through demo personas, explain value and capture follow-up actions.
 
-## Start here — no GitHub experience required
+The presentation runs in a web browser. It includes a content management system (CMS), so you can tailor the story, images and slide order without editing code. Developers can extend the layouts, interactions and animations through the React and TypeScript source.
 
-1. Extract the ZIP on your Mac. Keep the entire `demo-story-framework` folder together.
-2. Install Node.js 22 LTS (or a compatible newer LTS) from https://nodejs.org and GitHub Desktop from https://desktop.github.com.
-3. Open Terminal. Type `cd ` (including the space), drag this folder onto Terminal, then press Return.
-4. Run `npm ci` to download the project's dependencies. Internet is required for this first step.
-5. Run `npm run dev`.
-6. Open the localhost address printed by Terminal, normally http://127.0.0.1:5173.
-7. Leave Terminal running while using the presentation. Press Control+C to stop it.
+**This README describes the GitHub source package and its local CMS.** Each teammate runs their own copy on their computer. It is separate from the hosted ChatGPT Site and from previously exported single-file HTML presentations.
 
-Use **Edit content**, or open `/cms`, to edit slides. Arrow keys navigate. N captures follow-ups. This version runs a local file-backed CMS without a Salesforce connection or hosted account.
+## What you can do
 
-## Put it on GitHub using GitHub Desktop
+- Tailor the presentation to a customer: title, challenges, benefits, personas, value points, customer story and closing.
+- Introduce up to four presenters.
+- Present animated Before/After and contact centre capability diagrams.
+- Follow persona journeys and reveal points as you speak.
+- Hide slides and rearrange their order.
+- Highlight supported cards on hover and reveal customer logos on value cards.
+- Capture questions with **N** and review them on the Actions screen.
+- Share improvements through GitHub while keeping personal drafts and notes local.
 
-This ZIP deliberately contains no Git history or remote credentials.
+## 1. Get your copy and start it
 
-1. Sign into GitHub Desktop.
-2. Choose File → Add Local Repository and select the extracted folder.
-3. If Desktop says it is not a Git repository, choose the option to create a repository here. Check that the repository folder is the one containing `package.json` (do not create an extra nested project folder).
-4. Review Changes. You should see source, content and assets, but not `node_modules`, `dist` or `.local-data`.
-5. Commit the files with the message “Initial demo story framework”.
-6. Click Publish repository, name it `demo-story-framework`, and keep it private. Select your organisation if appropriate.
-7. Open the repository on GitHub and invite teammates through its access settings.
+### First-time setup
 
-The supplied customer content and Salesforce fonts/images are included for your team's existing presentation use. Review these assets and their usage rights before distributing outside the team. No open-source licence is granted by this package.
+You need repository access, [GitHub Desktop](https://desktop.github.com/) and [Node.js](https://nodejs.org/) installed. Use Node.js 22 or a compatible newer LTS version.
 
-## What Save and Publish mean locally
+1. Accept your GitHub repository invitation and sign in to GitHub Desktop.
+2. Choose **File → Clone repository** and select this repository. Cloning downloads your own working copy.
+3. Open the downloaded project folder. Its root should contain `package.json`, `src`, `public`, `content` and `.gitignore`.
+4. Open Terminal in that folder. On a Mac, you can type `cd `, drag the folder into Terminal, then press Return.
+5. Install the required packages:
 
-- Save draft writes content to `.local-data/state.json` on YOUR computer.
-- Publish copies the saved draft to the LOCAL presentation. It does not change the live ChatGPT Site or GitHub.
-- Uploaded images are saved in `.local-data/media/`.
-- Follow-up notes are saved in the same state file and grouped by customer.
-- Back up the entire `.local-data` folder to keep personal edits, uploads and notes.
-- `.local-data` is excluded from Git, so personal edits and questions are not accidentally shared.
-- Each teammate has an independent copy; this is not a shared multiuser server.
+   ```bash
+   npm ci
+   ```
 
-To intentionally share edited content: click Publish locally, then run:
+6. Start the presentation:
 
-```bash
-npm run export:content
-```
+   ```bash
+   npm run dev
+   ```
 
-This updates `content/initial.json` and copies uploaded images into `public/team-media`. Review and commit those changes in GitHub Desktop. Follow-up notes are excluded.
+7. Open the local address printed in Terminal, usually **http://127.0.0.1:5173**.
 
-Existing local state takes precedence over `content/initial.json`. To load a teammate's updated initial content, stop the server and rename `.local-data` to a backup name, then restart. Do not delete it without backing it up.
+Keep Terminal running while you use the presentation. Press **Control+C** to stop it. Installation requires internet; the local presentation and CMS can then run without the hosted service. External story links still require internet.
 
-## How teammates contribute
+### Next time
 
-Clone the repository in GitHub Desktop, open its folder in Terminal, run `npm ci`, then `npm run dev`. Create a new branch for a change, edit in VS Code or a coding assistant, test locally, commit and push, then open a pull request for review. Merge accepted changes into main; other teammates use Fetch/Pull to receive them.
+Open Terminal in the same folder and run `npm run dev`. You only need to reinstall packages when dependencies change or the installation needs repairing.
 
-## Project map
+## 2. Present the story
 
-| Location | Purpose |
+Use the arrow keys to move through the presentation. Some screens reveal the next point or diagram state before moving to the next slide. Use the navigation menu to jump to a screen, or the Journey Hub button to return to the persona overview.
+
+On the Before/After screen, use the state buttons or keyboard navigation to switch between diagrams. Hover over supported challenge, benefit, story and value cards to emphasise the point you are discussing. Customer value cards can flip to show their uploaded logos.
+
+Press **N** to capture a follow-up question, enter the note and submit it. Submitted notes appear on the **Actions** screen. Its **Reset** button clears the local list for the current customer.
+
+Before a meeting, publish your local draft and walk through the actual presentation—not only the CMS preview—to check the slide order, images, reveals and notes.
+
+## 3. Edit content in the CMS
+
+Open **Edit content**, or visit `/cms` at the local address—for example, **http://127.0.0.1:5173/cms**.
+
+The editor has three main areas:
+
+| Area | Purpose |
 | --- | --- |
-| `src/screens/` | Presentation slides and diagrams |
-| `src/screens/NativeVoice.tsx` | Before/after diagram, paths and animation |
-| `src/screens/ContactCenter.tsx` | Contact centre capabilities diagram |
-| `src/cms/Editor.tsx` | Content editor |
-| `src/data/` | Types, default content and diagram labels |
-| `src/state/` | Navigation, order, hiding and reveal state |
-| `src/components/` | Shared UI, notes and navigation |
-| `content/initial.json` | Published content snapshot used on first run |
-| `public/` | Fonts and presentation images |
-| `scripts/local-cms.mjs` | Local file-based content, notes and uploads API |
-| `worker/` and `db/` | Original hosted backend source, for developers |
+| Slide list on the left | Select a screen and change its position |
+| Preview in the middle | See the selected screen as you edit |
+| Fields on the right | Change text, images and screen visibility |
 
-## Build and hosting
+### Make a change
 
-`npm run build` type-checks and builds the frontend to `dist/client`.
-`npm run preview` runs the built frontend with the local CMS.
-`npm run build:worker` additionally bundles the original Worker backend.
+1. Select the relevant screen on the left.
+2. Edit its fields on the right. The preview updates as you type.
+3. Click **Save draft** to save your work without changing the presenting version.
+4. Click **Publish** when the changes are ready to appear in your local presentation.
+5. Return through **← Presentation** and check the result. Refresh an already-open presentation tab if necessary.
 
-The local API is intended for a trusted localhost machine only; it has no team login. Do not expose the dev/preview server publicly. A production migration needs authentication, database/media provisioning, and deployment configuration. The original Worker uses Cloudflare D1/R2 and a Sites-provided identity header; that identity check must be replaced for another host. Set an appropriate OWNER_EMAIL binding if retaining that worker. Personal hosting IDs and old data migrations are intentionally excluded.
+Typing updates the editor preview; it is **not an automatic file save**. Wait for the saved confirmation before closing the editor.
 
-GitHub stores and reviews the project; pushing a commit does not deploy the existing live Site. GitHub Pages alone cannot run this hosted CMS backend.
+### Common customisations
 
-## Offline HTML exports
+| Screen | What to edit |
+| --- | --- |
+| Title | Customer name, presentation title, subtitle, date, hero image and customer logo |
+| Team introductions | Up to four presenters, roles and portraits |
+| Challenges / Benefits | Three challenge-and-benefit pairs and their descriptions |
+| Journey hub / Persona introduction | Persona names, roles, portraits, overview points and quotes |
+| Persona journey | Journey title, points, tags and optional step icons |
+| Customer value | Value points, metrics, descriptions, reverse-side logos and audience portraits |
+| Customer story | Story details, statistics, relevance and external source link |
+| Key takeaways | Its own three benefit boxes and heading |
+| Contact centre capabilities | Diagram headings and text labels |
+| Why native voice matters | Before/After headlines, supporting sentences and diagram labels |
+| Closing | Closing content and vendor branding |
 
-This is the editable source project, not a single-file presentation. After dependencies are installed it can run locally without the hosted service. Building produces multiple files; it does not create `Presentation.html`. The previously supplied single-HTML exports use a separate bundling and file-save implementation. A maintained `export:html` command is not included in this handover; use the source/local mode for development and keep existing HTML exports for presenting. External customer-story links still require internet.
+“Why native voice matters” is the editor's section name for the Before/After diagram. The CMS changes its content; changes to connector positions, animation timing or layout require source-code edits.
+
+### Hide or reorder screens
+
+- Use the **↑ / ↓** buttons beside a screen in the slide list to move it.
+- Select a screen and untick **Show in presentation** to hide it. Its content remains available in the editor.
+- Click **Publish** to apply these changes to your local presentation.
+
+### Images and icons
+
+Use each image field's size guidance. Upload JPG, PNG or WebP files under 8 MB. Use **Fill frame** when cropping is appropriate, or **Show whole image** for logos.
+
+For journey-step icons, use a square **256 × 256 px** image, ideally a transparent PNG, with roughly 10% space around the symbol. If no icon is uploaded, the step displays a number.
+
+### Shared fields: change once, reuse across screens
+
+The presentation reads shared content from one configuration. For example, persona names and portraits are reused across their introductions and journey hub, and the customer/vendor branding is reused in the footer and closing experience.
+
+Not every similar-looking field is linked. **Key takeaways has its own benefit text**, so changing Benefits does not automatically rewrite Key takeaways. Check both when tailoring the story.
+
+## 4. Understand where your work is saved
+
+| Action | What happens |
+| --- | --- |
+| Save draft | Writes your draft to `.local-data/state.json` on your computer |
+| Publish in the local CMS | Makes that draft the local presentation's published content |
+| Upload an image | Saves it in `.local-data/media/` |
+| Submit a follow-up | Saves it locally, associated with the published customer name |
+| GitHub commit | Records selected project-file changes in your local Git history |
+| GitHub push | Uploads committed changes to the shared repository |
+
+**Publish in the CMS does not publish to GitHub or update the hosted live Site.** Your teammates cannot see your local CMS edits until you intentionally export and share them.
+
+Back up the entire `.local-data` folder to retain drafts, published content, uploaded images and notes. It is excluded from Git so these personal files are not accidentally uploaded. Follow-ups use the customer name for grouping; changing that name changes the list you see.
+
+## 5. Share content changes through GitHub
+
+Use this when you want your revised presentation content to become available to the team.
+
+1. In GitHub Desktop, fetch/pull the latest repository changes before starting shared work.
+2. Create a branch with a descriptive name, such as `content/customer-story-update`.
+3. Edit through the CMS, then click **Publish** locally.
+4. In a second Terminal window, open the same project folder and run:
+
+   ```bash
+   npm run export:content
+   ```
+
+5. In GitHub Desktop, review the changed files. This command updates **`content/initial.json`** and copies uploaded images into **`public/team-media/`**. It exports the full published configuration, not just the screen you edited. Private follow-up notes are excluded.
+6. Commit with a clear message, such as `Update customer story and key takeaways`.
+7. Push/publish the branch, then open a **pull request** describing what changed and how you checked it.
+8. A reviewer checks and merges the pull request into `main`.
+
+Coordinate when several people edit presentation content: the configuration is one JSON file, so simultaneous exports may conflict. Do not blindly overwrite another teammate's changes.
+
+### Receive another teammate's content update
+
+Pulling updates the code and initial content, but **your existing `.local-data` still takes precedence**. This protects your personal draft from being overwritten.
+
+To start from the team's updated initial content:
+
+1. Save your work and stop the local server.
+2. Move `.local-data` to a safe backup location outside the repository. On a Mac, **Command+Shift+.** shows hidden folders.
+3. Pull the latest repository changes.
+4. Run `npm ci` if dependencies changed, then `npm run dev`.
+
+The app now starts from `content/initial.json`. Your backed-up draft, uploads and notes remain separate; this process does not merge them with the new team content.
+
+## 6. Develop new features
+
+Content changes generally belong in the CMS. New layouts, interactions or animation behaviour belong in the source code.
+
+1. Pull the latest `main`, then create a feature branch.
+2. Edit the source in VS Code or your preferred coding tool.
+3. Run `npm run dev` and exercise the changed behaviour.
+4. Run `npm run build` to check TypeScript and build the frontend.
+5. Commit and push the branch, then open a pull request.
+
+Before requesting review, check the affected slides in both navigation directions, editor save/publish behaviour, image sizing and laptop layout. For animation changes, also check reduced-motion behaviour. Describe any verification you could not complete.
+
+| File or folder | What it controls |
+| --- | --- |
+| `src/screens/` | Slide components and their styling |
+| `src/screens/NativeVoice.tsx` | Before/After diagram and request animation |
+| `src/screens/ContactCenter.tsx` | Contact centre capability diagram |
+| `src/cms/Editor.tsx` | CMS fields and editor controls |
+| `src/data/` | Types, defaults and diagram configuration |
+| `src/state/` | Slide order, visibility, navigation and reveals |
+| `src/components/` | Shared controls, notes and other reusable UI |
+| `content/initial.json` | Starting presentation content for a new local copy |
+| `public/` | Images, fonts and other assets |
+| `scripts/local-cms.mjs` | Local file-based API |
+| `scripts/export-content.mjs` | Exports published local content for sharing |
+| `worker/`, `db/` | Original hosted backend source for future deployment work |
+
+## 7. Avoid uploading thousands of dependency files
+
+`npm ci` creates `node_modules`. These downloaded dependencies should not be committed. Each teammate installs their own copy.
+
+Keep `.gitignore` at the repository root, beside `package.json`. The supplied file excludes `node_modules/`, `dist/`, `.local-data/`, environment files and temporary build files.
+
+If GitHub Desktop suddenly shows thousands of dependency files, stop before committing. Check that the hidden `.gitignore` file was copied into the correct folder. If the files were already committed, ask the repository maintainer to remove them from Git tracking; adding an ignore rule alone does not untrack existing files.
+
+## 8. Build, hosting and offline use
+
+| Command | Purpose |
+| --- | --- |
+| `npm ci` | Install the locked dependency versions |
+| `npm run dev` | Start local development with the file-backed CMS |
+| `npm run build` | Type-check and build the frontend into `dist/client` |
+| `npm run preview` | Preview the built frontend with the local CMS |
+| `npm run export:content` | Export published local content and images for Git |
+| `npm run build:worker` | Additionally bundle the original hosted Worker backend |
+
+GitHub is the place to store, review and share the project. It does not automatically deploy this app. GitHub Pages alone cannot run its hosted CMS backend.
+
+The supplied local server is for localhost use and has no team authentication. Production hosting requires authentication, database/media provisioning and deployment configuration. The original Worker assumes Cloudflare D1/R2 and Sites identity headers; it needs adaptation for another host.
+
+This repository is the editable development project. **It does not currently include a maintained single-file HTML export command.** `npm run build` creates multiple files, not `Presentation.html`. Previously supplied standalone HTML exports have their own bundled saving behaviour; use those separately when needed.
 
 ## Troubleshooting
 
-- “npm: command not found”: install Node.js, then reopen Terminal.
-- Address in use: Vite prints another available port; use that address.
-- Missing edits: check you opened the same project folder and retained `.local-data`.
-- Conflicting draft: reload the editor before saving; another tab may have saved first.
-- Build failure: use `npm ci`, then retry `npm run build`.
+| Problem | What to check |
+| --- | --- |
+| `npm: command not found` | Install Node.js, reopen Terminal and retry |
+| `package.json` cannot be found | Open Terminal in the repository root |
+| Browser cannot connect | Keep `npm run dev` running and use the exact address it prints |
+| CMS edit does not appear in the presentation | Click Publish locally, then refresh the presentation |
+| Teammate's content update is missing | Existing `.local-data` overrides initial content; follow the backup/reset instructions above |
+| “A newer draft exists” | Another tab may have saved; preserve unsaved text before reloading the editor |
+| Missing images after moving folders | Keep `.local-data/media` with its state file and retain the project's `public` assets |
+| Thousands of files in GitHub Desktop | Check `.gitignore`; do not commit `node_modules` |
 
-## Provenance
-
-Source snapshot: `bbf0f0d0e4a9043a55efc34d76187b5714ca40db`.
-Published content captured 16 October 2026. This handover adds local file persistence and content export without modifying the live presentation. No private follow-up notes, Git history, access tokens or hosted infrastructure credentials are included.
+The package includes customer content and Salesforce-branded assets for the existing team presentation. Keep the repository private and review content and asset rights before broader distribution. No open-source licence is supplied.
