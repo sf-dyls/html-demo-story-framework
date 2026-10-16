@@ -1,8 +1,11 @@
+import {isOffline} from './offline';
+import {offlineApi} from './offline-api';
 import {createContext,useContext} from 'react';
 import {presentation} from '../data/presentation';
 export const ContentContext=createContext(presentation);
 export const useContent=()=>useContext(ContentContext);
 export async function api(path:string,options?:RequestInit){
+ if(isOffline)return offlineApi(path,options);
  const response=await fetch(path,{...options,credentials:'same-origin',headers:{Accept:'application/json',...options?.headers}});
  const text=await response.text();let result;
  try{result=JSON.parse(text)}catch{

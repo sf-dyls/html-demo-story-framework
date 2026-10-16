@@ -75,6 +75,25 @@ Keep Cursor and the development server running while using the presentation. To 
 
 Use one running server for the project. Switching between Terminal and Cursor does not require another clone or installation. Reinstall dependencies when they change or the installation needs repair.
 
+## Download one HTML file for offline presenting
+
+After customising the presentation, click **Download offline HTML** in the local CMS. This exports the current editor content, including unsaved text changes, and saved follow-up notes for the selected customer. It does not require a Git commit or push, and it does not overwrite your local draft or publish to the hosted Site.
+
+1. Wait for the export to finish; the first build may take a few seconds.
+2. Keep the downloaded `Presentation.html` wherever you want to present from.
+3. Open it directly in desktop Chrome. You can stop the local server and close Cursor. The presentation, CMS, fonts, images and animations are embedded in this one file.
+4. To edit the exported copy, click **Edit content**, then **Save to file**.
+5. On the first save in each browser session, choose the file to update (or choose a new name). Chrome requires your permission to write to that file. Later saves in that session reuse the chosen file.
+6. Reopen the saved HTML to check your changes. Keep dated backups.
+
+Submitting or resetting follow-up notes in the standalone version also saves the HTML. If direct file saving is unavailable, it downloads a new HTML copy instead; keep the newest copy. Cancelling the file picker cancels that save. External customer-story links still need internet.
+
+Offline changes remain in that HTML file. They do not automatically sync back to the source project's CMS or to GitHub. To share framework improvements, use the GitHub workflow below; to share a finished presentation, share the HTML file.
+
+**Terminal alternative:** run `npm run export:html` in the repository. This exports the local **published** content and its saved notes to `exports/Presentation.html`. If no local state exists, it uses the initial content. Publish first if you want your draft included.
+
+**Cursor alternative:** ask Agent: “Run npm run export:html and show me exports/Presentation.html. Do not commit or push anything.” This uses published content, unlike the CMS button which uses current editor fields.
+
 ## 2. Present the story
 
 Use the arrow keys to move through the presentation. Some screens reveal the next point or diagram state before moving to the next slide. Use the navigation menu to jump to a screen, or the Journey Hub button to return to the persona overview.
@@ -218,6 +237,8 @@ Before requesting review, check the affected slides in both navigation direction
 | `public/` | Images, fonts and other assets |
 | `scripts/local-cms.mjs` | Local file-based API |
 | `scripts/export-content.mjs` | Exports published local content for sharing |
+| `scripts/export-html.mjs` | Builds the standalone offline HTML |
+| `src/cms/offline.ts`, `offline-api.ts` | Embedded content and save-to-file behaviour |
 | `worker/`, `db/` | Original hosted backend source for future deployment work |
 
 ## 7. Avoid uploading thousands of dependency files
@@ -237,13 +258,14 @@ If GitHub Desktop suddenly shows thousands of dependency files, stop before comm
 | `npm run build` | Type-check and build the frontend into `dist/client` |
 | `npm run preview` | Preview the built frontend with the local CMS |
 | `npm run export:content` | Export published local content and images for Git |
+| `npm run export:html` | Build a self-contained HTML from published content |
 | `npm run build:worker` | Additionally bundle the original hosted Worker backend |
 
 GitHub is the place to store, review and share the project. It does not automatically deploy this app. GitHub Pages alone cannot run its hosted CMS backend.
 
 The supplied local server is for localhost use and has no team authentication. Production hosting requires authentication, database/media provisioning and deployment configuration. The original Worker assumes Cloudflare D1/R2 and Sites identity headers; it needs adaptation for another host.
 
-This repository is the editable development project. **It does not currently include a maintained single-file HTML export command.** `npm run build` creates multiple files, not `Presentation.html`. Previously supplied standalone HTML exports have their own bundled saving behaviour; use those separately when needed.
+This repository is the editable development project. `npm run build` produces the multi-file frontend; use **Download offline HTML** or `npm run export:html` for a standalone presentation. Exporting requires the installed development dependencies, but using the exported HTML requires only a browser. Exported files in `exports/` are ignored by Git.
 
 ## Troubleshooting
 

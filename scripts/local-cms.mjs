@@ -1,3 +1,4 @@
+import {exportHtml} from './export-html.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
@@ -19,6 +20,10 @@ function install(server){
  let chunks=[],length=0;for await(const chunk of req){length+=chunk.length;if(length>9*1024*1024)return reply({error:'Upload too large'},413);chunks.push(chunk)}
  const raw=Buffer.concat(chunks),body=raw.length&&req.headers['content-type']?.includes('application/json')?JSON.parse(raw):{};
  const s=read(),p=url.pathname,m=req.method;
+ if(p==='/api/export-html'&&m==='POST'){
+ if(body.config?.schemaVersion!==1||!body.config?.presentation?.title)return reply({error:'Invalid presentation'},400);
+ const html=await exportHtml(root,body.config,s.items??[]);res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Content-Disposition':'attachment; filename="Presentation.html"','Cache-Control':'no-store'});return res.end(html);
+ }
  if(p.startsWith('/media/')){
  const id=p.slice(7);if(!/^[a-f0-9-]+\.(png|jpg|webp)$/.test(id))return reply({error:'Not found'},404);
  const f=path.join(dir,'media',id);if(!fs.existsSync(f))return reply({error:'Not found'},404);
