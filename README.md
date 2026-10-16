@@ -19,33 +19,61 @@ The presentation runs in a web browser. It includes a content management system 
 
 ## 1. Get your copy and start it
 
-### First-time setup
+### Get the project (both options)
 
 You need repository access, [GitHub Desktop](https://desktop.github.com/) and [Node.js](https://nodejs.org/) installed. Use Node.js 22 or a compatible newer LTS version.
 
 1. Accept your GitHub repository invitation and sign in to GitHub Desktop.
 2. Choose **File → Clone repository** and select this repository. Cloning downloads your own working copy.
 3. Open the downloaded project folder. Its root should contain `package.json`, `src`, `public`, `content` and `.gitignore`.
-4. Open Terminal in that folder. On a Mac, you can type `cd `, drag the folder into Terminal, then press Return.
-5. Install the required packages:
+
+Choose either option below. Both run the same presentation and CMS, and both save to the same local files.
+
+### Option A — Use Terminal
+
+1. Open Terminal in that folder. On a Mac, you can type `cd `, drag the folder into Terminal, then press Return.
+2. Install the required packages:
 
    ```bash
    npm ci
    ```
 
-6. Start the presentation:
+3. Start the presentation:
 
    ```bash
    npm run dev
    ```
 
-7. Open the local address printed in Terminal, usually **http://127.0.0.1:5173**.
+4. Open the local address printed in Terminal, usually **http://127.0.0.1:5173**.
 
 Keep Terminal running while you use the presentation. Press **Control+C** to stop it. Installation requires internet; the local presentation and CMS can then run without the hosted service. External story links still require internet.
 
+### Option B — Use Cursor Agent
+
+Install [Cursor](https://cursor.com/) as well as Node.js. Cursor can run the commands for you; you do not need to open a separate Terminal application. Agent availability may depend on your Cursor account and settings.
+
+1. In GitHub Desktop, choose **Repository → Show in Finder** (or **Show in Explorer** on Windows) to locate your cloned repository.
+2. In Cursor, choose **File → Open Folder** and select the folder containing `package.json`, `src` and `public`.
+3. Open Cursor's Agent chat and paste:
+
+   > Help me run this project locally. Read README.md and package.json. Install dependencies with npm ci if needed, then start the development server using npm run dev. Give me the local preview URL. Do not change project files, commit anything or push to GitHub.
+
+4. Approve command execution if Cursor asks. It may show the running server in its integrated terminal.
+5. Open the address Cursor provides in Chrome, usually **http://127.0.0.1:5173**. Use the actual port it reports if different.
+6. Click **Edit content** to open the CMS, or add `/cms` to that local address.
+
+Keep Cursor and the development server running while using the presentation. To stop, ask Agent to stop the development server it started, or press **Control+C** in that server's integrated terminal.
+
+**Do not double-click this project's `index.html`.** It is React source and needs the development server to assemble the page and provide CMS saving. Separate `Presentation.html` exports are the versions that open directly.
+
 ### Next time
 
-Open Terminal in the same folder and run `npm run dev`. You only need to reinstall packages when dependencies change or the installation needs repairing.
+| Your preference | What to do |
+| --- | --- |
+| Terminal | Open Terminal in the project folder and run `npm run dev` |
+| Cursor | Open the same folder and ask: “Start the local development server and give me the preview URL. Do not change any files.” |
+
+Use one running server for the project. Switching between Terminal and Cursor does not require another clone or installation. Reinstall dependencies when they change or the installation needs repair.
 
 ## 2. Present the story
 
@@ -142,6 +170,8 @@ Use this when you want your revised presentation content to become available to 
    ```bash
    npm run export:content
    ```
+
+   **Cursor alternative:** ask Agent: “Run npm run export:content in this project and tell me which files changed. Do not commit or push.” You still need to Publish in the CMS first.
 
 5. In GitHub Desktop, review the changed files. This command updates **`content/initial.json`** and copies uploaded images into **`public/team-media/`**. It exports the full published configuration, not just the screen you edited. Private follow-up notes are excluded.
 6. Commit with a clear message, such as `Update customer story and key takeaways`.
